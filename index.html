@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днём Рождения!</title>
+    <style>
+        :root {
+            --color-primary: #000000;
+            --color-secondary: #1a1a1a;
+            --color-bg: #121212;
+            --color-card: #1e1e1e;
+            --color-text: #ffffff;
+            --color-text-secondary: #a0a0a0;
+            --color-turquoise: #40e0d0;
+            --color-turquoise-dark: #20b2aa;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--color-primary);
+            color: var(--color-text);
+            line-height: 1.47059;
+            letter-spacing: -0.022em;
+            overflow-x: hidden;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        nav a:hover {
+            color: var(--color-turquoise);
+            background-color: rgba(64, 224, 208, 0.1);
+        }
+
+        header {
+            margin-top: 60px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom, var(--color-secondary), var(--color-bg));
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, var(--color-bg) 100%);
+            opacity: 0.7;
+        }
+
+        header img {
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 8px 32px rgba(64, 224, 208, 0.2);
+            transition: var(--transition);
+            border: 3px solid transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        header img:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--color-turquoise);
+            box-shadow: 0 16px 48px rgba(64, 224, 208, 0.3);
+        }
+
+        header h1 {
+            margin-top: 2rem;
+            color: var(--color-text);
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.003em;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .section {
+            padding: 8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            min-height: 80vh;
+            background-color: var(--color-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section:nth-child(even) {
+            background-color: var(--color-secondary);
+        }
+
+        .section img {
+            width: 600px;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 16px;
+            transition: var(--transition);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            border: 2px solid transparent;
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .section img:hover {
+            transform: perspective(1000px) rotateY(5deg) scale(1.02);
+            border-color: var(--color-turquoise);
+            box-shadow: 0 16px 48px rgba(64, 224, 208, 0.2);
+        }
+
+        .content {
+            max-width: 500px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .content h2 {
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.002em;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--color-turquoise);
+            transition: var(--transition);
+        }
+
+        .content h2:hover::after {
+            width: 100px;
+        }
+
+        .content p {
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .content p:hover {
+            color: var(--color-text);
+        }
+
+        .wish-button {
+            background: linear-gradient(45deg, var(--color-turquoise-dark), var(--color-turquoise));
+            border: none;
+            color: var(--color-primary);
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(64, 224, 208, 0.3);
+        }
+
+        .wish-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(64, 224, 208, 0.4);
+        }
+
+        .wish-button:active {
+            transform: translateY(1px);
+        }
+
+        .wish-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.7);
+            background: var(--color-secondary);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 90%;
+            width: 400px;
+            text-align: center;
+            border: 2px solid var(--color-turquoise);
+        }
+
+        .wish-modal.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            transition: all 0.3s ease-in-out;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-modal:hover {
+            color: var(--color-turquoise);
+            background-color: rgba(64, 224, 208, 0.1);
+        }
+
+        .wish-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 1rem 0;
+            color: var(--color-text);
+        }
+
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+        }
+
+        .confetti.square {
+            border-radius: 2px;
+        }
+
+        .confetti.circle {
+            border-radius: 50%;
+        }
+
+        .confetti.triangle {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 10px solid currentColor;
+            background-color: transparent;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100%) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes confetti-shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-15px);
+            }
+            75% {
+                transform: translateX(15px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.8rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .section {
+                flex-direction: column;
+                text-align: center;
+                padding: 4rem 1.5rem;
+            }
+
+            .section img {
+                width: 100%;
+                max-width: 400px;
+                margin: 1.5rem 0;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .content h2 {
+                font-size: 2rem;
+            }
+
+            .content h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            header img {
+                width: 250px;
+                height: 250px;
+            }
+
+            .wish-button {
+                padding: 0.8rem 2rem;
+                font-size: 1.1rem;
+            }
+        }
+
+        .footer {
+            background: linear-gradient(to top, var(--color-primary), var(--color-secondary));
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(64, 224, 208, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            gap: 2rem;
+        }
+
+        .footer-wish {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--color-turquoise);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-quote {
+            font-style: italic;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .footer-date {
+            margin-top: 2rem;
+            color: var(--color-turquoise);
+            font-size: 1.2rem;
+        }
+
+        .footer-hearts {
+            font-size: 2rem;
+            margin: 1rem 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--color-text-secondary);
+            transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: 50%;
+            background: rgba(64, 224, 208, 0.1);
+        }
+
+        .social-links a:hover {
+            color: var(--color-turquoise);
+            background: rgba(64, 224, 208, 0.2);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                padding: 3rem 1rem;
+            }
+
+            .footer-wish {
+                font-size: 1.5rem;
+            }
+        }
+        @media (max-width: 768px) {
+            /* Навигация */
+            nav {
+                padding: 0.8rem 0.5rem;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+                padding: 0 0.5rem;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.6rem;
+            }
+
+            /* Заголовок */
+            header {
+                margin-top: 50px;
+                padding: 1rem;
+            }
+
+            header img {
+                width: 280px;
+                height: 280px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+                margin-top: 1.5rem;
+            }
+
+            /* Секции */
+            .section {
+                flex-direction: column;
+                text-align: center;
+                padding: 3rem 1rem;
+                gap: 2rem;
+            }
+
+            .section img {
+                width: 100%;
+                height: auto;
+                max-width: 350px;
+                margin: 1rem auto;
+            }
+
+            .content {
+                padding: 1rem;
+                max-width: 100%;
+            }
+
+            .content h2 {
+                font-size: 1.8rem;
+                text-align: center;
+            }
+
+            .content p {
+                font-size: 1rem;
+                text-align: left;
+                padding: 0 0.5rem;
+            }
+
+            .content h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            /* Кнопка и модальное окно */
+            .wish-button {
+                padding: 0.8rem 1.8rem;
+                font-size: 1rem;
+            }
+
+            .wish-modal {
+                width: 90%;
+                padding: 2rem 1.5rem;
+            }
+
+            .wish-text {
+                font-size: 1rem;
+            }
+
+            /* Футер */
+            .footer {
+                padding: 2rem 1rem;
+            }
+
+            .footer-content {
+                gap: 1.5rem;
+            }
+
+            .footer-wish {
+                font-size: 1.5rem;
+            }
+
+            .footer-quote {
+                font-size: 0.9rem;
+                padding: 0 1rem;
+            }
+
+            .footer-date {
+                font-size: 1rem;
+            }
+
+            .footer-hearts {
+                font-size: 1.5rem;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+
+            .social-links a {
+                padding: 0.4rem;
+            }
+        }
+
+        /* Добавим стили для очень маленьких экранов */
+        @media (max-width: 380px) {
+            header img {
+                width: 240px;
+                height: 240px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content h2 {
+                font-size: 1.6rem;
+            }
+
+            nav ul {
+                gap: 0.3rem;
+            }
+
+            nav a {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.5rem;
+            }
+
+            .wish-button {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Добавим стили для средних экранов */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .section img {
+                width: 450px;
+                height: 450px;
+            }
+
+            .content {
+                max-width: 450px;
+            }
+
+            header img {
+                width: 400px;
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="#header">Головна</a></li>
+        <li><a href="#section1">Творчість та натхнення</a></li>
+        <li><a href="#section2">Побажання</a></li>
+        <li><a href="#section3">Моменти</a></li>
+        <li><a href="#section4">Майбутнє</a></li>
+    </ul>
+</nav>
+
+<header id="header">
+    <img src="https://scontent.ffjr1-2.fna.fbcdn.net/v/t39.30808-6/447965638_1636985710465501_5492827047914438998_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=ncDRAvhqdFgQ7kNvgGXtVSZ&_nc_zt=23&_nc_ht=scontent.ffjr1-2.fna&_nc_gid=Aazv4HpiCWc4PxpQwEvbQB3&oh=00_AYAKMpY37rd1FtfPD300EgP-lc8hfldUZr7l8H5MbtNeLw&oe=675CB617"
+         alt="Именинница">
+    <h1>З Днем Народження!</h1>
+    <button class="wish-button">Натисни для побажання ✨</button>
+</header>
+
+<div class="modal-overlay"></div>
+<div class="wish-modal">
+    <button class="close-modal">×</button>
+    <div class="wish-text"></div>
+</div>
+
+<section id="section1" class="section">
+    <img src="https://scontent.ffjr1-2.fna.fbcdn.net/v/t39.30808-6/428172083_1569636043867135_1738447774526841887_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=axE-ACzow6AQ7kNvgGfzBHj&_nc_zt=23&_nc_ht=scontent.ffjr1-2.fna&_nc_gid=AbKSI25RNXeP4Ca9aRmnH5O&oh=00_AYCgnE7q48AnLh-wj8cM-wOvb5tMVKTxi9QZWrOA-RscRQ&oe=675CCCC5"
+         alt="Памятное фото 1">
+    <div class="content">
+        <h2>Творчість та натхнення</h2>
+        <p>Ти справжня натхненниця, яка підкорює світ своїм талантом та грацією! Твої танцювальні виступи зачаровують, а
+            прагнення до досконалості вражає. Нехай твоя подорож через різні країни - від яскравої Туреччини до затишної
+            Чехії та гостинної Польщі - і надалі збагачує тебе новими враженнями та можливостями. Твій бездоганний стиль
+            та вміння завжди виглядати на всі сто надихають оточуючих. Бажаю, щоб твоя енергія та краса продовжували
+            сяяти, а любов до подорожей відкривала нові горизонти! Нехай кожен твій танець буде сповнений радості, а
+            твоя елегантність та грація залишаються твоєю візитною карткою. Хай здійсняться всі твої мрії про підкорення
+            нових сцен та відкриття нових країн!</p>
+    </div>
+</section>
+
+<section id="section2" class="section">
+    <div class="content">
+        <h2>Щирі побажання</h2>
+        <p>Бажаю тобі, щоб кожен день був наповнений радістю та щастям! Нехай доля дарує тобі найкращі моменти життя, а
+            серце завжди буде сповнене любові та натхнення. Твоя усмішка освітлює світ навколо, а твоя доброта зігріває
+            серця всіх, хто тебе знає. Нехай збуваються всі твої мрії, а удача супроводжує тебе у всіх починаннях!</p>
+    </div>
+    <img src="https://scontent.ffjr1-3.fna.fbcdn.net/v/t39.30808-6/448676650_1645284866302252_6871307227314338014_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=URIhR6XH8qIQ7kNvgGQx3we&_nc_zt=23&_nc_ht=scontent.ffjr1-3.fna&_nc_gid=A1RzQyR1m6Czs5KmQRy3E5t&oh=00_AYAp2ISHxdJhp6jGHNAmUs5u26motb_Ie8pr6J9gGaNiXg&oe=675CC25E"
+         alt="Памятное фото 2">
+</section>
+
+<section id="section3" class="section">
+    <img src="https://scontent.ffjr1-1.fna.fbcdn.net/v/t39.30808-6/450532060_1657399095090829_1440943390519653940_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=kZTSLsAY4sYQ7kNvgGb6y3V&_nc_zt=23&_nc_ht=scontent.ffjr1-1.fna&_nc_gid=AwMQSw5eZzoRwCkFKi44DLX&oh=00_AYBL6gP3LMz4-dd0UE7FlmSyQ1ZavQmmak4DIbB82bLKPQ&oe=675CB901"
+         alt="Памятное фото 3">
+    <div class="content">
+        <h2>Особливі моменти</h2>
+        <p>Дякую за приємні моменти спілкування та гарний настрій, який ти даруєш оточуючим. Твоя енергія та оптимізм
+            надихають всіх навколо. Бажаю, щоб кожен твій день був наповнений радісними подіями та приємними сюрпризами.
+            Нехай життя дарує тобі багато щасливих моментів та нових звершень!</p>
+    </div>
+</section>
+
+<section id="section4" class="section">
+    <div class="content">
+        <h2>Погляд у майбутнє</h2>
+        <p>Бажаю, щоб твоє майбутнє було яскравим та щасливим! Нехай доля дарує тобі радісні моменти, цікаві знайомства
+            та нові можливості. Впевнений, що твої таланти та наполегливість допоможуть досягти всіх поставлених цілей.
+            Хай здійсняться всі твої мрії про подорожі, кар'єру та особисте щастя. Бажаю, щоб кожен новий день приносив
+            тобі успіх та натхнення!</p>
+    </div>
+    <img src="https://scontent.ffjr1-3.fna.fbcdn.net/v/t39.30808-6/443714018_1621531535344252_4703516984116558267_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=J3hKX9lc8y0Q7kNvgFx0rpf&_nc_zt=23&_nc_ht=scontent.ffjr1-3.fna&_nc_gid=AEkqv-DbSPUnGV2KE43Lscu&oh=00_AYCS_XtowkpVSVns5uASBWb-lI8D45nOKrjC92nI_1DH2g&oe=675CA321"
+         alt="Памятное фото 4">
+</section>
+
+<div class="confetti-container"></div>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-wish">
+            З Днем Народження! ✨
+        </div>
+
+        <div class="footer-hearts">
+            💫 🎉 🎈 💝
+        </div>
+
+        <div class="footer-quote">
+            "Нехай кожен твій крок на життєвому шляху буде сповнений грації,
+            кожна подорож приносить незабутні враження,
+            а кожен день дарує нові приводи для усмішки!"
+        </div>
+
+        <div class="footer-date">
+            9 грудня 2024
+        </div>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/name_lucky_lucky_/" title="Instagram">📸</a>
+            <a href="https://www.facebook.com/profile.php?id=100009226154613" title="Facebook">👥</a>
+            <a href="#" title="Telegram">✈️</a>
+        </div>
+
+        <div class="footer-date">
+            Vadim Kharovyuk 2024
+        </div>
+    </div>
+</footer>
+
+<script>
+    function createConfetti() {
+        const colors = ['#40e0d0', '#ffffff', '#ff69b4', '#ffd700', '#32cd32', '#ff4500'];
+        const shapes = ['square', 'circle', 'triangle'];
+        const confettiContainer = document.querySelector('.confetti-container');
+
+        // Clear previous confetti
+        confettiContainer.innerHTML = '';
+
+        // Create confetti with improved animation
+        for (let i = 0; i < 100; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = `confetti ${shapes[Math.floor(Math.random() * shapes.length)]}`;
+
+            // Random positioning and styling
+            confetti.style.left = `${Math.random() * 100}%`;
+            confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+            // Random animation parameters
+            const delay = Math.random() * 3;
+            const duration = Math.random() * 3 + 2;
+            const initialRotation = Math.random() * 360;
+            const scale = Math.random() * 0.5 + 0.5;
+
+            confetti.style.transform = `rotate(${initialRotation}deg) scale(${scale})`;
+            confetti.style.animation = `
+                    confetti-fall ${duration}s linear ${delay}s forwards,
+                    confetti-shake ${duration / 2}s ease-in-out ${delay}s infinite
+                `;
+
+            confettiContainer.appendChild(confetti);
+        }
+
+        // Cleanup after animation
+        setTimeout(() => {
+            const confetti = document.querySelectorAll('.confetti');
+            confetti.forEach(c => {
+                c.style.animation = 'none';
+                setTimeout(() => c.remove(), 100);
+            });
+        }, 6000);
+    }
+
+    // Enhanced wishes array with emojis and more varied messages
+    const wishes = [
+        "Нехай кожен день приносить радість і нові можливості! 🌟✨",
+        "Бажаю, щоб всі твої мрії стали реальністю! 🎈🎉",
+        "Будь щаслива кожної миті життя! 💖💝",
+        "Нехай життя буде наповнене любов'ю та успіхом! 🌺🌸",
+        "Бажаю нескінченного щастя і море посмішок! 🌈☀️",
+        "Нехай цей рік буде найчудовішим! 🎉🎊",
+        "Бажаю здійснення всіх заповітних бажань! ⭐️💫",
+        "Нехай кожен день дарує нові приводи для радості! 🎁🎨",
+        "Будь завжди оточена любов'ю та турботою близьких! 💕💗",
+        "Нехай удача супроводжує у всіх починаннях! 🍀🌟"
+    ];
+
+    // Get DOM elements
+    const wishButton = document.querySelector('.wish-button');
+    const modal = document.querySelector('.wish-modal');
+    const overlay = document.querySelector('.modal-overlay');
+    const closeButton = document.querySelector('.close-modal');
+    const wishText = document.querySelector('.wish-text');
+
+    // Track used wishes to avoid repetition
+    let usedWishes = new Set();
+
+    // Get random wish without repetition
+    function getRandomWish() {
+        if (usedWishes.size === wishes.length) {
+            usedWishes.clear(); // Reset when all wishes have been used
+        }
+
+        let availableWishes = wishes.filter(wish => !usedWishes.has(wish));
+        let randomWish = availableWishes[Math.floor(Math.random() * availableWishes.length)];
+        usedWishes.add(randomWish);
+        return randomWish;
+    }
+
+    // Smooth modal operations
+    function openModal() {
+        modal.classList.add('active');
+        overlay.classList.add('active');
+        wishText.textContent = getRandomWish();
+        createConfetti();
+
+        // Add subtle entrance animation to text
+        wishText.style.opacity = '0';
+        wishText.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            wishText.style.transition = 'all 0.5s ease-out';
+            wishText.style.opacity = '1';
+            wishText.style.transform = 'translateY(0)';
+        }, 100);
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        overlay.classList.remove('active');
+
+        // Reset text animation
+        setTimeout(() => {
+            wishText.style.transition = 'none';
+            wishText.style.opacity = '0';
+            wishText.style.transform = 'translateY(20px)';
+        }, 300);
+    }
+
+    // Add event listeners
+    wishButton.addEventListener('click', openModal);
+    closeButton.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
+
+    // Initial animation on page load
+    window.addEventListener('load', () => {
+        createConfetti();
+        // Create multiple waves of confetti
+        let count = 0;
+        const interval = setInterval(() => {
+            count++;
+            if (count < 3) {
+                createConfetti();
+            } else {
+                clearInterval(interval);
+            }
+        }, 2000);
+    });
+</script>
+</body>
+</html>
