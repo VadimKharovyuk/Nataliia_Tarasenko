@@ -654,6 +654,50 @@
                 height: 400px;
             }
         }
+        .author-signature {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(64, 224, 208, 0.1);
+            border-radius: 20px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            transition: var(--transition);
+        }
+
+        .author-signature:hover {
+            background: rgba(64, 224, 208, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .author-icon {
+            font-size: 1.2rem;
+            color: var(--color-turquoise);
+        }
+
+        .author-text {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .author-signature {
+                padding: 0.4rem 0.8rem;
+            }
+
+            .author-icon {
+                font-size: 1rem;
+            }
+
+            .author-text {
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -756,8 +800,9 @@
             <a href="https://t.me/name_lucky_lucky" title="Telegram" target="_blank">✈️</a>
         </div>
 
-        <div class="footer-date">
-            Vadim Kharovyuk 2024
+        <div class="author-signature">
+            <span class="author-icon">👨‍💻</span>
+            <span class="author-text">Created by Vadim Kharovyuk | 2024</span>
         </div>
     </div>
 </footer>
