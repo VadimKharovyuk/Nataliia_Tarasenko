@@ -698,6 +698,77 @@
                 font-size: 0.8rem;
             }
         }
+        .social-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.7);
+            background: var(--color-secondary);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 90%;
+            width: 400px;
+            text-align: center;
+            border: 2px solid var(--color-turquoise);
+        }
+
+        .social-modal.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .social-links-grid {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link-item {
+            padding: 1rem;
+            background: rgba(64, 224, 208, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--color-text);
+            transition: var(--transition);
+        }
+
+        .social-link-item:hover {
+            background: rgba(64, 224, 208, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+        }
+
+        .social-text {
+            font-size: 1.1rem;
+        }
+
+        .author-button {
+            background: transparent;
+            border: 2px solid var(--color-turquoise);
+            color: var(--color-turquoise);
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .author-button:hover {
+            background: var(--color-turquoise);
+            color: var(--color-primary);
+        }
     </style>
 </head>
 <body>
@@ -791,21 +862,80 @@
         </div>
 
         <div class="footer-date">
-            28 грудня 2024
+            27 грудня 2024
         </div>
 
         <div class="social-links">
-            <a href="https://www.instagram.com/name_lucky_lucky_/" title="Instagram">📸</a>
-            <a href="https://www.facebook.com/profile.php?id=100009226154613" title="Facebook">👥</a>
-            <a href="https://t.me/name_lucky_lucky" title="Telegram" target="_blank">✈️</a>
+            <a href="https://www.instagram.com/nataliie_t_" title="Instagram">📸</a>
+            <a href="https://www.facebook.com/Nataliia666" title="Facebook">👥</a>
+            <a href="https://t.me/nataliie2727" title="Telegram" target="_blank">✈️</a>
         </div>
 
-        <div class="author-signature">
-            <span class="author-icon">👨‍💻</span>
-            <span class="author-text">Created by Vadim Kharovyuk | 2024</span>
-        </div>
+<!--        <div class="author-signature">-->
+<!--            <span class="author-icon">👨‍💻</span>-->
+<!--            <span class="author-text">Created by Vadim Kharovyuk | 2024</span>-->
+<!--        </div>-->
     </div>
 </footer>
+<!-- Добавьте это после закрывающего тега футера -->
+<div class="social-modal">
+    <button class="close-modal">×</button>
+    <h3 style="margin-bottom: 1rem; color: var(--color-turquoise);">Мої соціальні мережі</h3>
+    <div class="social-links-grid">
+        <a href="https://www.instagram.com/name_lucky_lucky_/" target="_blank" class="social-link-item">
+            <span class="social-icon">📸</span>
+            <span class="social-text">Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=100009226154613" target="_blank" class="social-link-item">
+            <span class="social-icon">👥</span>
+            <span class="social-text">Facebook</span>
+        </a>
+        <a href="https://t.me/name_lucky_lucky" target="_blank" class="social-link-item">
+            <span class="social-icon">✈️</span>
+            <span class="social-text">Telegram</span>
+        </a>
+    </div>
+</div>
+
+<!-- Измените подпись автора, добавив кнопку -->
+<div class="author-signature">
+    <span class="author-icon">👨‍💻</span>
+    <span class="author-text">Created by Vadim Kharovyuk | 2024</span>
+    <button class="author-button">Мої контакти</button>
+</div>
+
+<!-- Добавьте этот JavaScript код в конец файла, перед закрывающим тегом </body> -->
+<script>
+    // Получаем элементы
+    const authorButton = document.querySelector('.author-button');
+    const socialModal = document.querySelector('.social-modal');
+    const closeSocialModal = socialModal.querySelector('.close-modal');
+
+    // Функция открытия модального окна
+    function openSocialModal() {
+        socialModal.classList.add('active');
+        overlay.classList.add('active');
+        createConfetti(); // Создаем эффект конфетти при открытии
+    }
+
+    // Функция закрытия модального окна
+    function closeSocialModalFunc() {
+        socialModal.classList.remove('active');
+        overlay.classList.remove('active');
+    }
+
+    // Добавляем обработчики событий
+    authorButton.addEventListener('click', openSocialModal);
+    closeSocialModal.addEventListener('click', closeSocialModalFunc);
+    overlay.addEventListener('click', closeSocialModalFunc);
+
+    // Закрытие по клавише Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && socialModal.classList.contains('active')) {
+            closeSocialModalFunc();
+        }
+    });
+</script>
 
 <script>
     function createConfetti() {
@@ -957,5 +1087,6 @@
         }, 2000);
     });
 </script>
+<br><br><br><br>
 </body>
 </html>
